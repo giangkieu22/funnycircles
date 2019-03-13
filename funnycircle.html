@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>funnycircle</title>
+</head>
+<body>
+<canvas id="hinhtron" width="1900px" height="910px" style="border:2px solid"></canvas>
+<script>
+    function Circle(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.r = radius;
+    };
+
+    function randomHex(){
+        return Math.floor(Math.random() * 255);
+    }
+
+    function randomColor(){
+        var red = randomHex();
+        var blue = randomHex();
+        var yellow = randomHex();
+        return "rgb(" + red + "," + blue + "," + yellow +")";
+    }
+
+    // function randomColor() {
+    //     var red = Math.random() * 255;
+    //     var blue = Math.random() * 250;
+    //     var yellow = Math.random() * 250;
+    //     return 'rgb(' + red + blue + yellow + ')';
+
+    function createCircle() {
+        var c = document.getElementById("hinhtron").getContext('2d');
+        let r = Math.random() * 600;
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        var circle = new Circle(x, y, r);
+        c.beginPath();
+        c.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+        var color = randomColor();
+        c.fillStyle = color;
+        c.fill();
+    }
+    function createCircles() {
+        for (let i = 0; i < 2000; i++) {
+            createCircle();
+        }
+    }
+    createCircles();
+</script>
+</body>
+</html>
